@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		body {
+	background: linear-gradient(-45deg, #00264d,  #001a33,#0a001a, #000d1a);
+	background-size: 400% 400%;
+	animation: gradient 150s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+}
+button {
+  background-color: white; /* Green */
+  border: none;
+
+  color: #140033;
+  padding: 15px;
+  border-radius: 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px 2px;
+  cursor: pointer;
+}
+.text-center {
+  text-align: center;
+}
+h1{
+	padding: 6px;
+	color:white;
+  text-align: center;
+}
+h2,h3,h4{
+	color:white;
+  text-align: center;
+  
+}
+.neon {
+  font-family: neon;
+  color: white;
+  font-size: 20px;
+  line-height: 20px;
+  text-shadow: 0 0 14px #fff;
+     text-align: center;
+}
+
+
+	</style>
+</head>
+<body>
+<h1></h1>
+<h2>Please talk to us!<h2><h3> Will try to understand and will love to help you express and smile :)</h3>
+{% load static %}
+<img src="{% static 't.gif'%} ">
+<form method="post">
+    {% csrf_token %}
+      <input style="visibility: hidden;" name="replyingto" id="replyingto_id" value="{{ val }}">
+      <div class="text-center">
+    <button type="submit" name="run_script" onclick="alert('Wait! While we are detecting!')">I am here to listen :)</button></div>
+ <img src="{% static 'new.gif'%}"  id="demo">
+ <div class="pp"><p class="neon" id="feelings"></p></div>
+</form>   
+
+
+</body>
+</html>
+<script>
+var script = document.currentScript;
+var fullUrl = script.src;
+if (document.getElementById("replyingto_id").value=="sad") {
+  document.getElementById("demo").src = "{% static 'sa.gif'%} ";
+  document.getElementById("feelings").innerHTML = "Why so sad! We are here to help!";
+}
+if (document.getElementById("replyingto_id").value=="angry") {
+  document.getElementById("demo").src = "{% static 'an.gif'%} ";
+   document.getElementById("feelings").innerHTML = "Calm Down! Everything is going to be fine";
+}
+if (document.getElementById("replyingto_id").value=="neutal") {
+  document.getElementById("demo").src = "{% static 'new.gif'%} ";
+   document.getElementById("feelings").innerHTML = "Yay! Stay calm and watch anime!";
+}
+if (document.getElementById("replyingto_id").value=="happy") {
+  document.getElementById("demo").src = "{% static 'h.gif'%} ";
+  document.getElementById("feelings").innerHTML = "Yay! Happy but not depressed! (Secret to healthy life)";
+}
+</script>
